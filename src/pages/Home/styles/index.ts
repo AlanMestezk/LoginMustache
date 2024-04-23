@@ -6,7 +6,7 @@ export const HomeStyles = StyleSheet.create(
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: '#6A5ACD'
+            backgroundColor: '#4169E1'
         },
         viewtitle:{
             justifyContent: 'center',
@@ -30,7 +30,7 @@ export const HomeStyles = StyleSheet.create(
             margin: 20
         },
         touchButton:{
-            backgroundColor:'#4169E1',
+            backgroundColor:'#000080',
             width: '55%',
             height: 70,
             margin: 10,
@@ -39,8 +39,8 @@ export const HomeStyles = StyleSheet.create(
             flexDirection: 'row',
             borderRadius: 40,
             padding: 10,
-            borderColor: 'black',
-            borderWidth: 1
+            borderColor: '#008B8B',
+            borderWidth: 2
         },
         textButton:{
             color: 'aliceblue',

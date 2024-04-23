@@ -29,6 +29,20 @@ export const Routes: React.FC = ()=>{
             <Stack.Screen
                 name="Register"
                 component={Register}
+                options={
+                    {
+                        title: 'Cadastro',
+                        headerStyle:{
+                            backgroundColor: '#1a6fc4',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                            fontSize: 22
+                        },
+                        animation: 'slide_from_right'
+                    }
+                }
             />
 
         </Stack.Navigator>

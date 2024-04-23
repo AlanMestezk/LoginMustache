@@ -1,10 +1,10 @@
-import { HomeStyles }                           from "./styles"
-import { useNavigation }                        from "@react-navigation/native"
+import { HomeStyles }                                  from "./styles"
+import { useNavigation }                               from "@react-navigation/native"
 import { View, Text, Button, TouchableOpacity, Image } from "react-native"
 
-const loginIcon = require( "../../assets/loginIcon.png")
+const loginIcon    = require( "../../assets/loginIcon.png")
+const iconMusApp   = require('../../assets/ICONMustache.png')
 const registerIcon = require("../../assets/registerIcon.png")
-const iconMusApp = require('../../assets/ICONMustache.png')
 
 export const Home: React.FC = ()=>{
 
