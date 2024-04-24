@@ -33,20 +33,24 @@ export const Register: React.FC = ()=>{
                 }
             )
             .catch(
-                (error)=>{
-                    if(error.code === 'auth/weak-password'){
 
-                        alert(`Senha muito curta, insira uma com pelos 6 caracteres.`)
-                        return;
+                (error) => {
 
-                    }if(error.code === 'auth/invalid-email'){
+                    switch (error.code) {
 
-                        alert(`Insira um e-mail valido.`)
-                        return;
+                        case 'auth/weak-password':
+                            alert(`Senha muito curta, insira uma com pelo menos 6 caracteres.`);
+                            break;
 
-                    }else{
+                        case 'auth/invalid-email':
+                            alert(`Insira um e-mail válido.`);
+                            break;
 
-                        console.log(`Não foi possivel cadastrar usuário: ${error}`)
+                        default:
+                            console.error(`Não foi possível cadastrar usuário: ${error}`);
+                            alert('Erro desconhecido ao cadastrar usuário. Por favor, tente novamente mais tarde.');
+                            return;
+
                     }
                 }
             )
@@ -60,7 +64,7 @@ export const Register: React.FC = ()=>{
 
             setTimeout(() => {
                 setRegisterSuccess(false);
-            }, 7000);
+            }, 10000);
 
         }else{
 
@@ -121,10 +125,9 @@ export const Register: React.FC = ()=>{
                 load ? 
                 (
                     <> 
-                        <>
-                            <ActivityIndicator size={'large'} color={'#45d3cc'} style={RegisterStyles.load} />
-                            <Text style={RegisterStyles.textLoad}>Um momento</Text>
-                        </>
+
+                        <ActivityIndicator size={'large'} color={'#45d3cc'} style={RegisterStyles.load} />
+                        <Text style={RegisterStyles.textLoad}>Um momento</Text>
                     </>
                 ):
                 (

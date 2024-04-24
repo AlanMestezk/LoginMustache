@@ -24,6 +24,19 @@ export const Routes: React.FC = ()=>{
             <Stack.Screen
                 name="Login"
                 component={Login}
+                options={
+                    {
+                        title: 'Entrar',
+                        headerStyle:{
+                            backgroundColor: '#0b4c8d',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                            fontSize: 22
+                        }
+                    }
+                }
             />
             
             <Stack.Screen
