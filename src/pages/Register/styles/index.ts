@@ -90,6 +90,30 @@ export const RegisterStyles = StyleSheet.create(
             width: 40, 
             height: 40, 
             marginLeft: 10
+        },
+        load:{
+            marginTop: 20
+        },
+        textLoad:{
+            fontSize: 18,
+            fontWeight: 'bold',
+            color: 'aliceblue'
+        },
+        viewMsgm:{
+            width: 300,
+            height: 70, 
+            backgroundColor:'#3CB371',
+            borderRadius: 30,
+            marginBottom: 30,
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 12,
+            marginTop: 20
+        },
+        msgm:{
+            fontWeight: 'bold',
+            fontSize: 18,
+            color: 'aliceblue'
         }
     }
 )
