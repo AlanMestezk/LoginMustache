@@ -1,5 +1,6 @@
 import firebase                                                              from '../../data/firebaseConfig'
 import { useState }                                                          from "react"
+import { useNavigation }                                                     from '@react-navigation/native'
 import { RegisterStyles }                                                    from "./styles"
 import { View, Text, TextInput, Image, TouchableOpacity, ActivityIndicator } from "react-native"
 
@@ -17,6 +18,7 @@ export const Register: React.FC = ()=>{
     const handleShowPass = ()=>{
         setShowPass(!showPass)
     }
+
 
     const handleRegister = async ()=>{
 
@@ -46,8 +48,12 @@ export const Register: React.FC = ()=>{
                             alert(`Insira um e-mail válido.`);
                             break;
 
+                        case 'auth/email-already-in-use':
+                            alert(`Já existi uma conta com o endereço de email fornecido.`);
+                            break;
+
                         default:
-                            console.error(`Não foi possível cadastrar usuário: ${error}`);
+                            console.error(`Não foi possível cadastrar usuário: ${error.message}`);
                             alert('Erro desconhecido ao cadastrar usuário. Por favor, tente novamente mais tarde.');
                             return;
 
@@ -64,7 +70,7 @@ export const Register: React.FC = ()=>{
 
             setTimeout(() => {
                 setRegisterSuccess(false);
-            }, 10000);
+            }, 15000);
 
         }else{
 

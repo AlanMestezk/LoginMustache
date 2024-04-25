@@ -1,3 +1,4 @@
+import { CameIn } from '../pages/CameIn'
 import { Home }                     from '../pages/Home'
 import { Login }                    from '../pages/Login'
 import { Register }                 from '../pages/Register'
@@ -54,6 +55,26 @@ export const Routes: React.FC = ()=>{
                             fontSize: 22
                         },
                         animation: 'slide_from_right'
+                    }
+                }
+            />
+
+            <Stack.Screen
+                name="CameIn"
+                component={CameIn}
+                options={
+                    {
+                        title: 'Logado!',
+                        headerStyle:{
+                            backgroundColor: '#1a6fc4',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                            fontSize: 22
+                        },
+                        animation: 'slide_from_right',
+                        headerShown: false
                     }
                 }
             />

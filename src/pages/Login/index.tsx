@@ -2,6 +2,7 @@ import firebase                                                              fro
 import { useState }                                                          from "react"
 import { LoginStyles }                                                       from './styles'
 import { View, Text, TextInput, Image, TouchableOpacity, ActivityIndicator } from "react-native"
+import { useNavigation } from '@react-navigation/native'
 
 const iconMusApp   = require('../../assets/ICONMustache.png')
 const iconRegister = require('../../assets/loginIcon.png')
@@ -18,52 +19,73 @@ export const Login: React.FC = ()=>{
         setShowPass(!showPass)
     }
 
+    const navigation: any = useNavigation();
+
     const handleLogin = async ()=>{
 
-        if(email !== '' && password !== ''){
+        if(email !== '' && password !== ""){
 
             setLoad(true)
 
             await firebase.auth().signInWithEmailAndPassword(email, password)
             .then(
 
-                (value: any)=>{
+                (value)=>{
 
-                    console.log(`Login efetuado com sucesso ** E-mail: ${value.user?.email}`)
+                    console.log(`Login com o e-mail ${value.user?.email} realizado com sucesso`)
                     setLoginSuccess(true)
-                }
 
+                    setTimeout(
+                        ()=>{
+
+                            navigation.navigate('CameIn');
+
+                        }, 3000
+                    )
+                }
             )
             .catch(
-                
-                (error) => {
+
+                (error)=>{
+
 
                     switch (error.code) {
-                        case 'auth/user-not-found':
-                            alert(`Ocorre quando não há nenhum registro de usuário correspondente ao e-mail fornecido.`);
+
+                        case 'auth/internal-error':
+                            alert(`O e-mail ou senha está incorreto.`);
                             break;
-                        case 'auth/wrong-password':
-                            alert(` Ocorre quando a senha fornecida está incorreta..`);
+
+                        case 'auth/invalid-email':
+                            alert(`Insira um e-mail válido.`);
                             break;
+                        
+                        case 'auth/too-many-requests':
+                            alert('O acesso a esta conta foi temporariamente desabilitado devido a várias tentativas de login sem sucesso. Você pode restaurá-lo imediatamente redefinindo sua senha ou tentar novamente mais tarde.')
+                            break;
+
+
                         default:
-                            console.error(`Não foi possível cadastrar usuário: ${error}`);
-                            alert('Erro desconhecido ao logar usuário. Por favor, tente novamente mais tarde.');
+                            console.log(`Ops, deu erro >> ${error.code}: ${error.message}`);
+                            alert(`Ocorreu um erro, tente novamente mais tarde.`);
                             break;
                     }
                 }
             )
 
+            setEmail('')
+            setPassaword('')
 
             setTimeout(() => {
                 setLoad(false);
-            }, 1000);
+            }, 2000);
 
             setTimeout(() => {
                 setLoginSuccess(false);
             }, 10000);
 
+
         }else{
-            alert('Preencha todos os campos')
+            alert('Preencha todos os campos!')
         }
 
         
